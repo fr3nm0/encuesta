@@ -2,14 +2,14 @@ package com.fr3nm0.polls_backend.entities;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "_users" )
+@Entity(name = "users" )
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

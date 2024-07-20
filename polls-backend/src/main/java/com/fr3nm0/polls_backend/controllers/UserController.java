@@ -1,6 +1,6 @@
 package com.fr3nm0.polls_backend.controllers;
 
-import com.fr3nm0.polls_backend.entities.UserEntity;
+import com.fr3nm0.polls_backend.models.requests.LoginRequest;
 import com.fr3nm0.polls_backend.models.requests.RegisterRequest;
 import com.fr3nm0.polls_backend.models.responses.UserResponse;
 import com.fr3nm0.polls_backend.services.UserService;
@@ -24,4 +24,11 @@ public class UserController {
     public ResponseEntity<UserResponse> createUser(@RequestBody @Valid RegisterRequest request) {
         return ResponseEntity.ok(userService.createUser(request));
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request) {
+
+        return ResponseEntity.ok(userService.loadUserByUsername(request.getEmail()));
+    }
+
 }
