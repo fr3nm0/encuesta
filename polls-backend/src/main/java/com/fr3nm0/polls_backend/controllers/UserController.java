@@ -6,6 +6,7 @@ import com.fr3nm0.polls_backend.models.responses.UserResponse;
 import com.fr3nm0.polls_backend.services.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +28,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request) {
-
-        return ResponseEntity.ok(userService.loadUserByUsername(request.getEmail()));
+        return ResponseEntity.ok(userService.login(request));
     }
 
 }

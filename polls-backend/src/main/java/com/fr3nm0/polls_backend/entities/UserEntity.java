@@ -1,15 +1,22 @@
 package com.fr3nm0.polls_backend.entities;
 
 
+import com.fr3nm0.polls_backend.entities.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "users" )
+@Entity
+@Table(name = "users", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"email"})
+})
+
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +30,6 @@ public class UserEntity {
 
     @Column(nullable = false)
     private String encryptedPassword;
+
+    private Set<Role> roles;
 }
