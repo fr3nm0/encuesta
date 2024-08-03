@@ -2,6 +2,7 @@ package com.fr3nm0.polls_backend.security.jwt;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +14,11 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
-    private String stringSecret = "Y8VaQNRF6Mh2e9pDcUzSEyKZXTCx7JnBkPwftbHvIEUsOXoKgIlTEJoJLNemiIDMnIzlOFLtCgj5mJNJiewOIyDADPgryrpiNFgOkidyPXweeJF";
-    private long expirationDate = 864000000;
+    @Value("${JWT_SECRET}")
+    private String stringSecret;
+
+    @Value("${JWT_EXPIRATION}")
+    private long expirationDate;
 
     //Generate JWT token
     public String generateToken(Authentication authentication) {
